@@ -4,6 +4,7 @@ import User from './User'
 
 export default class Profile extends BaseModel {
   public static table = 'profile'
+
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
@@ -11,7 +12,7 @@ export default class Profile extends BaseModel {
   public id: number
 
   @column()
-  public user_id?: number
+  public userId?: number
 
   @column()
   public name: string
@@ -23,7 +24,7 @@ export default class Profile extends BaseModel {
   public gender: Gender
 
   @column.date()
-  public dob?: DateTime
+  public dob: DateTime
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

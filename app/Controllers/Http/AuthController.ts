@@ -4,19 +4,19 @@ import Profile from 'App/Models/Profile'
 import RegisterValidator from 'App/validators/RegisterValidator'
 
 export default class AuthController {
-  public async register({ request, response, auth }: HttpContextContract) {
-    const { email, password, mobile } = await request.validate(RegisterValidator)
+  public async register({ request, response }: HttpContextContract) {
+    const { email, password, mobile, dob, gender } = await request.validate(RegisterValidator)
 
     // create user
     const user = await User.create({ email, password })
 
     // create profile
     await Profile.create({
-      mobile: mobile,
-      user_id: user.id,
+      userId: user.id,
+      mobile,
+      dob,
+      gender,
     })
-
-    await auth.login(user)
 
     return response.json({
       message: 'User Created',

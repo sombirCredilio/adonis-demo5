@@ -10,9 +10,7 @@ export default class RegisterValidator {
       rules.unique({ table: 'user', column: 'email', caseInsensitive: true }),
     ]),
     password: schema.string({ trim: true }, [
-      rules.maxLength(16),
-      rules.minLength(8),
-      rules.alphaNum(),
+      rules.regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/),
     ]),
     mobile: schema.string({}, [
       rules.unique({ table: 'profile', column: 'mobile' }),
@@ -20,8 +18,8 @@ export default class RegisterValidator {
       rules.maxLength(10),
       rules.minLength(10),
     ]),
-    gender: schema.enum(['MALE', 'FEMALE'], [rules.nullable()]),
-    dob: schema.date({}, [rules.nullable()]),
+    gender: schema.enum(Object.values(Gender)),
+    dob: schema.date(),
     name: schema.string({}, [rules.minLength(3), rules.maxLength(30)]),
   })
 
@@ -29,5 +27,8 @@ export default class RegisterValidator {
     'email.unique': 'This email is already in use. Please enter a different one.',
     'email.email': 'Please enter a valid email',
     'mobile.unique': 'This mobile number is already in use. Please enter a different number.',
+    'password.regex': 'Password should be alpha numeric min 8 and max 16 character length',
+    'name.maxLength': 'Name can contain maxium 30 characters',
+    'name.minLength': 'Name must contain minimum 3 characters',
   }
 }
