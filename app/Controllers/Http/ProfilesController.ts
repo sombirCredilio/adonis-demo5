@@ -1,7 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
 import Profile from 'App/Models/Profile'
-import User from 'App/Models/User'
 import UpdateProfileValidator from 'App/validators/UpdateProfileValidator'
 
 export default class ProfilesController {
