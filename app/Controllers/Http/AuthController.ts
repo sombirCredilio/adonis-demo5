@@ -36,7 +36,6 @@ export default class AuthController {
 
   public async logout({ response, auth }: HttpContextContract) {
     await auth.logout()
-
     return response.json({ message: 'Logout Succesfull', status: 200 })
   }
 }
