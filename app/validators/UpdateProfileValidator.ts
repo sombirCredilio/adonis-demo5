@@ -10,8 +10,6 @@ export default class UpdateProfileValidator {
     mobile: schema.string.optional({}, [
       rules.unique({ table: 'profile', column: 'mobile' }),
       rules.mobile(),
-      rules.maxLength(10),
-      rules.minLength(10),
     ]),
   })
 
