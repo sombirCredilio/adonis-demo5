@@ -12,7 +12,7 @@ export default class Profile extends BaseModel {
   public id: number
 
   @column()
-  public userId?: number
+  public userId: number
 
   @column()
   public name: string
