@@ -15,7 +15,7 @@ export default class ProfilesController {
 
   public async updateProfile({ request, response, auth }: HttpContextContract) {
     try {
-      const { name, dob, gender } = await request.validate(UpdateProfileValidator)
+      const { name, dob, gender, mobile } = await request.validate(UpdateProfileValidator)
       const userId = auth.user?.id as number
       const profile = await Profile.findBy('userId', userId)
 
@@ -27,6 +27,7 @@ export default class ProfilesController {
       profile.name = name || profile.name
       profile.dob = dob || profile.dob
       profile.gender = (gender as Gender) || profile.gender
+      profile.mobile = mobile || profile.mobile
 
       // Save the updated profile record to the database
       await profile.save()

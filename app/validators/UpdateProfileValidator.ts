@@ -6,7 +6,7 @@ export default class UpdateProfileValidator {
   public schema = schema.create({
     name: schema.string.optional({}, [rules.minLength(3), rules.maxLength(30)]),
     gender: schema.enum.optional(Object.values(Gender)),
-    dob: schema.date.optional(),
+    dob: schema.date.optional({ format: 'yyyy-MM-dd' }),
     mobile: schema.string.optional({}, [
       rules.unique({ table: 'profile', column: 'mobile' }),
       rules.mobile(),

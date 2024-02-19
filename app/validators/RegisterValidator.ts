@@ -15,11 +15,9 @@ export default class RegisterValidator {
     mobile: schema.string({}, [
       rules.unique({ table: 'profile', column: 'mobile' }),
       rules.mobile(),
-      rules.maxLength(10),
-      rules.minLength(10),
     ]),
     gender: schema.enum(Object.values(Gender)),
-    dob: schema.date(),
+    dob: schema.date({ format: 'yyyy-MM-dd' }),
     name: schema.string({}, [rules.minLength(3), rules.maxLength(30)]),
   })
 
